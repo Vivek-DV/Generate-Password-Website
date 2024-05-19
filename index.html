@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Generate a<br><span>Random Password</span></h1>
+    <div class="display">
+        <input type="text" id="password" placeholder="Password" readonly>
+        <img id="passwordIcon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiegFVqqiQkeP4B71tPBNHPAQgbhCfTUtqA1kju9z_XR9-54XPNXXjHHJ35cUmvuHEOPI&usqp=CAU" alt="Password Icon">
+    </div>
+    <button id="generateBtn"><img src="images/generate.png" alt="Generate Icon"> Generate Password</button>
+</div>
+
+<script>
+document.getElementById('generateBtn').addEventListener('click', createPassword);
+document.getElementById('passwordIcon').addEventListener('click', printMessage);
+
+const passwordBox = document.getElementById("password");
+const length = 8;
+
+const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+const num = "0123456789";
+const symbols = "@#$&*_";
+
+const allChars = uppercase + lowerCase + num + symbols;
+
+function createPassword() {
+    let password = "";
+    password += uppercase[Math.floor(Math.random() * uppercase.length)];
+    password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+    password += num[Math.floor(Math.random() * num.length)];
+    password += symbols[Math.floor(Math.random() * symbols.length)];
+
+    while (password.length < length) {
+        password += allChars[Math.floor(Math.random() * allChars.length)];
+    }
+    passwordBox.value = password;
+}
+
+function printMessage() {
+    console.log("Copied!");
+    alert("Copied");
+}
+</script>
+</body>
+</html>
